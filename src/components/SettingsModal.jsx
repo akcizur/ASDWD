@@ -7,8 +7,7 @@ const ButtonGroup = ({ options, currentValue, onChange }) => (
       <button
         key={opt.value}
         onClick={() => onChange(opt.value)}
-        aria-pressed={currentValue === opt.value}
-        className={'py-2 px-3 rounded-lg border font-medium text-xs transition-all ' + (
+        className={'focus-ring py-2 px-3 rounded-lg border font-medium text-xs transition-all ' + (
           currentValue === opt.value
             ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 border-transparent'
             : 'border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white text-neutral-700 dark:text-neutral-300'
@@ -35,8 +34,8 @@ const SettingsModal = () => {
   useEffect(() => {
     if (!isSettingsOpen) return undefined;
 
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') toggleSettings();
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') toggleSettings();
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -71,17 +70,15 @@ const SettingsModal = () => {
       onClick={toggleSettings}
     >
       <div
-        onClick={(event) => event.stopPropagation()}
         className="bg-white dark:bg-neutral-900 rounded-2xl max-w-md w-full p-6 space-y-6 shadow-2xl border border-neutral-200/50 dark:border-neutral-800"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800 pb-4">
-          <h3 id="settings-modal-title" className="text-lg font-bold tracking-tight text-neutral-900 dark:text-white">
-            Nastavení zobrazení
-          </h3>
+          <h3 id="settings-modal-title" className="text-lg font-bold tracking-tight text-neutral-900 dark:text-white">Nastavení zobrazení</h3>
           <button
             onClick={toggleSettings}
             aria-label="Zavřít nastavení"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            className="focus-ring w-8 h-8 rounded-full flex items-center justify-center text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800"
           >
             <i className="fas fa-times text-sm" aria-hidden="true"></i>
           </button>
@@ -94,7 +91,7 @@ const SettingsModal = () => {
               options={[
                 { label: 'Úzká', value: '38rem' },
                 { label: 'Střední', value: '48rem' },
-                { label: 'Široká', value: '64rem' },
+                { label: 'Široká', value: '64rem' }
               ]}
               currentValue={readingWidth}
               onChange={setReadingWidth}
@@ -107,7 +104,7 @@ const SettingsModal = () => {
               options={[
                 { label: 'Malé', value: 'sm' },
                 { label: 'Střední', value: 'base' },
-                { label: 'Velké', value: 'lg' },
+                { label: 'Velké', value: 'lg' }
               ]}
               currentValue={fontSize}
               onChange={setFontSize}
@@ -119,13 +116,12 @@ const SettingsModal = () => {
             <div className="grid grid-cols-2 gap-2">
               {[
                 { label: 'Kompaktní', value: 'compact' },
-                { label: 'Vzdušná', value: 'airy' },
+                { label: 'Vzdušná', value: 'airy' }
               ].map((opt) => (
                 <button
                   key={opt.value}
                   onClick={() => setSpacingDensity(opt.value)}
-                  aria-pressed={spacingDensity === opt.value}
-                  className={'py-2 px-3 rounded-lg border font-medium text-xs transition-all ' + (
+                  className={'focus-ring py-2 px-3 rounded-lg border font-medium text-xs transition-all ' + (
                     spacingDensity === opt.value
                       ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 border-transparent'
                       : 'border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white text-neutral-700 dark:text-neutral-300'
@@ -141,7 +137,7 @@ const SettingsModal = () => {
         <div className="pt-2">
           <button
             onClick={toggleSettings}
-            className="w-full py-2.5 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium text-xs tracking-wide uppercase transition-all shadow-sm"
+            className="focus-ring w-full py-2.5 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium text-xs tracking-wide uppercase transition-all shadow-sm"
           >
             Uložit nastavení
           </button>
